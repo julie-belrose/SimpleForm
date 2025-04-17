@@ -1,5 +1,4 @@
 
 export const regexPatterns = {
-    name : `^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$`,
-    inputNameOrLastName : `^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$`
+    onlyLetters: /^[A-Za-z]{3,}$/ // only letters, minimum 3 characters
 };

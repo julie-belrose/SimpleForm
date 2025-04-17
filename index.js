@@ -21,12 +21,12 @@ bookingForm.addEventListener("submit", (event) =>{
         data.participants
     );
 
+    console.log(reservation.toJSON());
+
     if (reservation.isValid()) {
         console.log("Reservation valid:");
-        console.log(reservation.toJSON());
     } else {
         console.log("Invalid reservation data.");
-        console.log(reservation.toJSON());
     }
 
 })

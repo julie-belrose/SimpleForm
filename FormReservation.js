@@ -1,3 +1,5 @@
+import { regexPatterns } from './regex.js';
+
 export class FormReservation {
 
     constructor(name, date, time, participants) {
@@ -24,7 +26,12 @@ export class FormReservation {
     }
 
     isValid() {
-
+        return (
+            regexPatterns.onlyLetters.test(this._name) &&
+                this._date !== ' ' &&
+                this._time !== '' &&
+                this._participants >= 0 && this._participants <= 10
+       )
     }
 
     toJSON() {
