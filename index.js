@@ -1,8 +1,10 @@
-import { FormReservation } from './FormReservation.js';
+import {FormReservation} from './FormReservation.js';
 
 const bookingForm = document.getElementById("booking-form");
-const errorDisplay = document.getElementById("global-error");
-const allInputs = bookingForm.querySelectorAll("input");
+const reservedSlots = [
+    "2025-04-20T09:00",
+    "2025-06-21T10:30"
+];
 
 const myForm = ()=>{
     bookingForm.addEventListener("submit", (event) =>{
@@ -30,17 +32,42 @@ const getFormAndReservation = (formElement) => {
 };
 
 const reservationSlot =(form)=>{
-    const reservedSlots = [];
     form.validate(reservedSlots);
 }
 
-const checkInputForm =(form)=>{
-    if (form.hasErrors()) {
-        const errors = form.getErrors();
+const checkInputForm = (reservation) => {
+    if (reservation.hasErrors()) {
+        const errors = reservation.getErrors();
         console.log("Form has errors:", errors);
-        console.log("Reservation is invalid:");
+        handleFormErrors(bookingForm, errors);
     } else {
-        console.log("Reservation is valid:", form.toJSON());
+        const slotKey = `${reservation.date}T${reservation.time}`;
+
+        if (!reservedSlots.includes(slotKey)) {
+            reservedSlots.push(slotKey);
+        }
+
+        console.log("✅ Reservation added:", reservedSlots);
+        console.log("Reservation is valid:", reservation.toJSON());
+        handleFormErrors(bookingForm);
+    }
+};
+
+const handleFormErrors = (formElement, errors = {}) => {
+    const allInputs = formElement.querySelectorAll("input");
+    const errorBox = document.getElementById("global-error");
+
+
+    for (const input of allInputs) {
+        input.style.backgroundColor = errors[input.name] ? "red" : "white"; //add style
+    }
+
+    if (Object.keys(errors).length > 0) { //display or not errors messages
+        errorBox.innerHTML= Object.values(errors).map(msg => `• ${msg}`).join("<br><br>");
+        errorBox.style.display = "block";
+    } else {
+        errorBox.innerText = "";
+        errorBox.style.display = "none";
     }
 };
 

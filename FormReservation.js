@@ -14,10 +14,7 @@ export class FormReservation {
 
         this.checkName(this._name);
         this.checkTime(this._time);
-
-        const slotKey = `${this._date}T${this._time}`;
-        this.checkSlot(reservedSlots, slotKey);
-
+        this.checkSlot(reservedSlots);
         this.checkParticipants(this._participants);
 
         return this._errors;
@@ -35,8 +32,14 @@ export class FormReservation {
         }
     }
 
-    checkSlot(reservedSlots, slotKey){
-        if (reservedSlots.includes(slotKey)) {
+    checkSlot(reservedSlots){
+
+        const isSameDayReserved = reservedSlots.some(slot => {
+            const [date] = slot.split("T");
+            return date === this._date;
+        });
+
+        if (isSameDayReserved) {
             this._errors.slot = "⚠️ This time is already booked.";
         }
     }
