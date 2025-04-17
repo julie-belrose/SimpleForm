@@ -1,15 +1,10 @@
-export class Form {
+export class FormReservation {
 
-    constructor(firstname, name, date, time, participants) {
-        this._firstname = firstname;
-        this._name = name;
+    constructor(name, date, time, participants) {
+        this._name = name; //two word
         this._date = date;
         this._time = time;
         this._participants = participants;
-    }
-
-    get firstname() {
-        return this._firstname;
     }
 
     get name() {
@@ -28,9 +23,12 @@ export class Form {
         return this._participants;
     }
 
+    isValid() {
+
+    }
+
     toJSON() {
         return {
-            firstname: this._firstname,
             name: this._name,
             date: this._date,
             time: this._time,
