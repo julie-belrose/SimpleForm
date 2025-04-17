@@ -2,6 +2,8 @@ import { FormReservation } from './FormReservation.js';
 
 const bookingForm = document.getElementById("booking-form");
 
+const reservedSlots = [];
+
 bookingForm.addEventListener("submit", (event) =>{
     event.preventDefault()
 
@@ -23,10 +25,14 @@ bookingForm.addEventListener("submit", (event) =>{
 
     console.log(reservation.toJSON());
 
-    if (reservation.isValid()) {
-        console.log("Reservation valid:");
+    reservation.validate(reservedSlots);
+
+    if (reservation.hasErrors()) {
+        const errors = reservation.getErrors();
+        console.log("Form has errors:", errors);
+        console.log("Reservation is invalid:");
     } else {
-        console.log("Invalid reservation data.");
+        console.log("Reservation is valid:", reservation.toJSON());
     }
 
 })
