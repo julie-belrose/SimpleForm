@@ -1,3 +1,13 @@
+:root {
+    --clr-btn-bg: #333;
+    --clr-btn-hover: #555;
+    --clr-text-light: #ffffff;
+
+    --clr-error-bg: #ffe6e6;
+    --clr-error-border: #b30000;
+    --clr-error-text: #b30000;
+}
+
 body {
     margin: 10em;
     font-family: sans-serif;
@@ -24,24 +34,27 @@ body {
 }
 
 #booking-form button {
-    background-color: #333;
-    color: white;
+    background-color: var(--clr-btn-bg);
+    color: var(--clr-text-light);
     border: none;
     cursor: pointer;
+    padding: 0.75em 1.25em;
+    border-radius: 0.375em;
+    font-weight: 600;
     transition: background-color 0.2s ease-in-out;
 }
 
 #booking-form button:hover {
-    background-color: #555;
+    background-color: var(--clr-btn-hover);
 }
 
 #global-error {
     flex: 1 1 100%;
-    background-color: #ffe6e6;
-    color: #b30000;
+    background-color: var(--clr-error-bg);
+    color: var(--clr-error-text);
     padding: 1em;
     margin: 1em;
-    border: 1px solid #b30000;
+    border: 1px solid var(--clr-error-border);
     border-radius: 5px;
     display: none;
 }
