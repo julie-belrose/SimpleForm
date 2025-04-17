@@ -1,0 +1,47 @@
+body {
+    margin: 10em;
+    font-family: sans-serif;
+}
+
+#booking-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#booking-form label {
+    flex: 1 1 100%;
+}
+
+
+#booking-form input,
+#booking-form button {
+    flex: 1 1 calc(50% - 1em);
+    padding: 0.5em;
+    font-size: 1em;
+}
+
+#booking-form button {
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#booking-form button:hover {
+    background-color: #555;
+}
+
+#global-error {
+    flex: 1 1 100%;
+    background-color: #ffe6e6;
+    color: #b30000;
+    padding: 1em;
+    margin: 1em;
+    border: 1px solid #b30000;
+    border-radius: 5px;
+    display: none;
+}
